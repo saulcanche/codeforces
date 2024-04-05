@@ -10,7 +10,6 @@ for problem in $(eval echo {$2..$3}); do
         continue
     else
         touch "$problem".cpp
-        # Insert template content into the newly created file
         cat <<EOF > "$problem".cpp
 #include <bits/stdc++.h>
 using namespace std;
