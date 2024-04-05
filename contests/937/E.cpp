@@ -1,19 +1,44 @@
 #include <bits/stdc++.h>
 using namespace std;
+
 typedef long long ll;
-void solve(){
+
+void solve() {
     ll n;
-    ll ans=0;
     cin >> n;
-    vector<ll> a(3);
-    for(ll i=0; i<n; i++){
-        cin >> a[0] >> a[1] >> a[2];
-        if((a[0]+ a[1]+ a[2]) > 1) ans++;
+    string s;
+    cin >> s;
+    
+    ll minLength = n; 
+
+    // Iterate over all possible substrings
+    for (ll ssL = 1; ssL <= n; ssL++) {
+        bool valid = true;
+        for (ll i = 0; i < n - ssL; i++) {
+            string sc = s.substr(i, ssL);
+            string sn = s.substr(i + ssL, ssL);
+            if (sc != sn) {
+                if (i != 0 && i != n - ssL) {
+                    valid = false;
+                    break;
+                }
+            }
+        }
+        if (valid && ssL < minLength) {
+            minLength = ssL;
+        }
     }
-    cout << ans << endl;
+
+    cout << "ans = " << minLength << endl;
 }
-int main(){
+
+int main() {
     std::cin.tie(nullptr);
     std::ios_base::sync_with_stdio(false);
-    solve();
+    ll t;
+    cin >> t;
+    while (t--) {
+        solve();
+    }
+    return 0;
 }
