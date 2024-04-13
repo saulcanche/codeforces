@@ -19,33 +19,34 @@ void solve(){
         } 
     }
     ll ini=0; 
-    ll fin=ini+3;
-    while (fin < n)
+    while (ini <= n)
     {
-        if (type[ini] == 'C' && type[ini + 1] == 'V' && type[ini + 2] == 'C')
-        {
-            if (type[fin] == 'C')
-            {
-                ini = fin;
-                fin += 4;
+        if(type[ini] == 'C' && type[ini+1]== 'V' && ini+2<n){
+            if(type[ini + 2] == 'C' && ini+3<n){
+                if(type[ini + 3]== 'C'){
+                    ans += str[ini];
+                    ans += str[ini + 1];
+                    ans += str[ini + 2];
+                    ans += '.';
+                    ini = ini+3;
+                } else if(type[ini + 3] == 'V'){
+                    ans += str[ini];
+                    ans += str[ini + 1];
+                    ans += '.';
+                    ini += 2;
+                }
+            } else if(ini+3==n){
                 ans += str[ini];
                 ans += str[ini + 1];
                 ans += str[ini + 2];
-                ans += '.';
+                ini = n+10;
             }
-            else
-            {
-                ini += 3;
-                fin += 4;
-                ans += str[ini];
-                ans += str[ini + 1];
-                ans += '.';
-            }
+        }else if(ini+2==n){
+            ans += str[ini];
+            ans += str[ini+1];
+            ini = n+10;
         }
-        else if(type[ini] == 'C' && type[ini+1] = 'V'){
-            ini++;
-            fin++;
-        }
+
     }
 
     cout << ans << endl;
