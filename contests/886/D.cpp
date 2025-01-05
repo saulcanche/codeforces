@@ -5,33 +5,36 @@
 using namespace std;
 typedef long long ll;
 
-void solve(){
+void solve() {
     ll n, k;
-    cin >> n;
-    cin >> k;
-    vector<ll> a;
-    a.reserve(n);
-    for(ll i= 0; i < n; i++){
-        ll x;
-        cin >> x;
-        a.push_back(x);
+    cin >> n >> k;
+    vector<ll> a(n);
+    for (ll i = 0; i < n; i++) {
+        cin >> a[i];
     }
     sort(a.begin(), a.end());
-    ll breakPoint = 0;
-    for(ll i=1; i < n; i++){
-        if(a[i] - a[i-1] > k) {
-            breakPoint = i;
-            break;
+
+    ll len = 1, max_len = 1;
+    for (ll i = 1; i < n; i++) {
+        if (a[i] - a[i - 1] <= k) {
+            len++;
+        } else {
+            max_len = max(max_len, len);
+            len = 1;
         }
     }
-    ll ans = min(breakPoint, n-breakPoint);
-    cout << ans << endl;
+    max_len = max(max_len, len); 
+    
+    cout << n - max_len << endl;
 }
-int main(){
-    ios_base::sync_with_stdio(0); cin.tie(0); cin.tie(0);
+
+int main() {
+    ios_base::sync_with_stdio(0);
+    cin.tie(0);
+    
     ll t;
-    cin >> t; 
-    while(t--){
+    cin >> t;
+    while (t--) {
         solve();
     }
     return 0;
