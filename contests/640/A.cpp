@@ -3,26 +3,21 @@ using namespace std;
 typedef long long ll;
 void solve(){
     ll n; cin >> n;
-    string strN = to_string(n);
-    for (ll i = 0; i < strN.length; i++)
-    {    
-        n/
-            
+    vector<ll> mult;
+    int pv = 1;
+    while(n > 0){
+        ll d = n % 10;
+        if(d != 0) mult.push_back(d * pv);
+        n /= 10;
+        pv *= 10;
     }
-    
-
-
+    cout << mult.size() << endl;
+    for(auto x : mult) cout << x << " ";
+    cout << endl;
 }
 int main(){
-    std::cin.tie(nullptr);
-    std::ios_base::sync_with_stdio(false);
+    ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0);
     ll t; cin >> t;
-    global vector<ll> multiples10(1e5)
-    for (ll i = 0; i < 1e5; i++)
-    {
-        multiples10[i] * 10;
-    }
-    
     while (t--)
     {
         solve();
