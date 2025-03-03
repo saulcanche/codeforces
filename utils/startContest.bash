@@ -15,11 +15,14 @@ for problem in $(eval echo {$2..$3}); do
 using namespace std;
 typedef long long ll;
 void solve(){
-
+    ll n;
+    string s;
 }
 int main(){
     ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0);
-    solve();
+    ll t = 1;
+    cin >> t;
+    while(t--) solve();
 }
 EOF
     fi

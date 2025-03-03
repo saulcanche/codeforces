@@ -1,12 +1,16 @@
-#include <bits/stdc++.h>
+#include <iostream>
+#include <vector>
 using namespace std;
 typedef long long ll;
+
+
 void solve(){
-    ll n;
-    x--;
+    ll n, s, m, x, y, last;
+    cin >> n >> s >> m;
+    while(n--){
+    }
 }
 int main(){
-    ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0);
     ll t;
     cin >> t;
     while(t--) solve();

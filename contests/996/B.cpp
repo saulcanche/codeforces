@@ -15,6 +15,16 @@ void solve() {
         cin >> x;
         sum_b += x;
     }
+    sort(a.begin(), a.end());
+    sort(b.begin(), b.end());
+
+
+    for(ll i = 0; i < n; i++){
+        if(b[i] < a[i]){
+            sum_a -= (n*(b[i]-a[i]) - 1);
+            sum_a ++;
+        }
+    }
 
     if (sum_a < sum_b) {
         cout << "NO" << endl;

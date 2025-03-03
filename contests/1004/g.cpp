@@ -2,13 +2,12 @@
 using namespace std;
 typedef long long ll;
 void solve(){
-    ll a, b;
-    cin >> a >> b;
-    cout << (a == 1 && b == 1? 1: b - a) << endl;
+    ll n;
+    string s;
 }
 int main(){
     ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0);
-    ll t;
+    ll t = 1;
     cin >> t;
     while(t--) solve();
 }
