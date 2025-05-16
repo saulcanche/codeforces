@@ -4,14 +4,23 @@
 using namespace std;
 typedef long long ll;
 void solve(){
-    ll n;
+    ll n, ans = 0, days3 = 0;
     cin >> n;
-    vector<ll> a(n), b(n);
-    for(auto &x : a) cin >> x;
-    for(auto &x : b) cin >> x;
-    ll ans = 0;
-    for(ll i = 0; i < n-1 ; i++) ans += max((ll)0, a[i] - b[i+1]);
-    ans += a.back();
+    vector<ll> x(3);
+    for(auto &e : x){
+        cin >> e;
+        days3+= e;
+    }
+    ans = 3*(n/days3);
+    n %= (days3);
+    if(!n){
+        cout << ans << endl;
+        return;
+    }
+    for(ll e: x){
+        ans++, n-=e;
+        if(n <= 0) break; 
+    }
     cout << ans << endl;
 }
 int main(){
