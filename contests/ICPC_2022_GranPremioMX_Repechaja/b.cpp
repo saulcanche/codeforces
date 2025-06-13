@@ -28,7 +28,6 @@ bool check(ll x, ll y){
     return x >= 0 && x<n && y>= 0 && y < m && !used[x][y] && stamps.count(mat[x][y]);
 }
 
-//up, down, left, right
 ll dx[]= {-1, 1, 0, 0};
 ll dy[]= {0, 0, -1, 1};
 

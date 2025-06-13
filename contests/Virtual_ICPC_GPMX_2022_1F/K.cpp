@@ -1,25 +1,26 @@
 #include <bits/stdc++.h>
 using namespace std;
 typedef long long ll;
-int main(){
+const ll MAXN = 50100;
+bool isP[MAXN];
+ll ans[MAXN];
+int main() {
     ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0);
-    ll k, p;
+    int k, p;
     cin >> k >> p;
-    vector<ll> ps(p);
-    vector<ll> d(k);
-    for(auto &x: ps) cin >> x;
-    sort(ps.begin(), ps.end(), greater());
-    for(auto &x : d) cin >> x;
-    for(auto &din: d){
-        ll w = LLONG_MAX;
-        ll sum = 0;
-        ll w2 = LLONG_MAX;
-        for(auto &pres: ps){ 
-            ll comp = ((din+pres-1)/pres) * pres;
-            w = min(w, comp - din);
-            sum += pres;
-            w2 = min(w, sum-din);
-        }
-        cout << min(w, w2) << endl;
+    isP[0] = 1;
+    for (ll i = 0; i < p; i++) {
+        ll x; cin >> x;
+        for (ll j = 0; j < MAXN; j++) if (isP[j]) isP[j+x] = true;
+    }
+    ll c = 0;
+    for (ll i = MAXN-1; i >= 0; i--) {
+        if (isP[i]) c = 0;
+        else c++;
+        ans[i] = c;
+    }
+    while (k--) {
+        ll x; cin >> x;
+        cout << ans[x] << endl;
     }
 }
