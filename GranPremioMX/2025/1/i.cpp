@@ -30,4 +30,5 @@ int main(){
         dfs(x, k);
         cout << ans << endl;
     }
+    ll a;
 }
