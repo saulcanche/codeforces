@@ -1,50 +1,42 @@
 #include <bits/stdc++.h>
-#include <ext/pb_ds/assoc_container.hpp>
-#include <ext/pb_ds/tree_policy.hpp>
-using namespace __gnu_pbds;
 using namespace std;
 typedef long long ll;
-typedef tree<pair<ll,ll>, null_type, less<pair<ll,ll>>, rb_tree_tag, tree_order_statistics_node_update> oset;
+vector<ll> v, vs;
+bool dirty = false;
+
+void buildSort() {
+    vs = v;
+    sort(vs.begin(), vs.end());
+    dirty = false;
+}
+
 int main(){
-    ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0);
-    ll n, q; 
+    ll n, q, op, a, b, k; 
     cin >> n >> q;
-    oset nums;  
-    map<ll, set<ll>> index;
-    for(ll i = 0; i < n; i++){
-        ll val; 
-        cin >> val;
-        nums.insert({val, i});
-        index[val].insert(i);
-    }
-    while(q--){
-        ll op;
+    v.resize(n);
+    for(ll &x : v) cin >> x;
+    buildSort();
+    
+    for(ll i = 0; i < q; i++){
         cin >> op;
         if(op == 1){
-            ll k;
             cin >> k;
-            if(index.count(k)) continue;
-            auto it = index.upper_bound(k);
-            if(it == index.end()){
-                ll newIdx = n;
-                n++;
-                nums.insert({k, newIdx});
-                index[k].insert(newIdx);
+            if(binary_search(vs.begin(), vs.end(), k)) continue; // Skip if already exists
+            
+            v.push_back(k); // Always add to original vector
+            
+            if(vs.back() < k){
+                vs.push_back(k); // Can append to sorted vector
             } else {
-                ll oldVal = it->first;
-                ll idx = *(it->second.begin());
-                nums.erase({oldVal, idx});
-                it->second.erase(idx);
-                if(it->second.empty()) index.erase(oldVal);
-                nums.insert({k, idx});
-                index[k].insert(idx);
+                // Need to insert in middle, so mark as dirty for rebuild
+                dirty = true;
             }
-        } else {
-            ll a, b;
+        }
+        else if(op == 2){
             cin >> a >> b;
-            ll left = nums.order_of_key({a, 0});  
-            ll right = nums.order_of_key({b+1, 0}); 
-            cout << right - left << endl;
+            if(dirty) buildSort();
+            cout << distance(lower_bound(vs.begin(), vs.end(), a), upper_bound(vs.begin(), vs.end(), b)) << endl;
         }
     }
+    return 0;
 }
