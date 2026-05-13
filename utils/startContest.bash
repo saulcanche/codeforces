@@ -27,4 +27,3 @@ int main(){
 EOF
     fi
 done
-code .
